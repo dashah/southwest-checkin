@@ -15,6 +15,7 @@ gem 'uglifier', '>= 1.3.0'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
+
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
@@ -26,7 +27,8 @@ gem 'typhoeus', '~> 0.7' # HTTP request client
 
 gem 'devise', '~> 3.4' # Authentication
 
-gem 'sidekiq', '~> 3.5' # Background job processing queue
+#gem 'redis-namespace'
+gem 'sidekiq', '< 5' # Background job processing queue
 gem 'sinatra', :require => nil # Required for sidekiq web UI
 gem 'sidekiq-failures' # Track sidekiq failures
 
