@@ -2,6 +2,11 @@ class CheckinJob < ActiveJob::Base
   extend Cancelable
   queue_as :checkin
 
+  include ActiveJob::Retry.new(strategy: :constant,
+                               limit: 10,
+                               delay: 2.seconds,
+                               retryable_exceptions: [Southwest::FailedCheckin])
+
   def perform(flight)
     checkin = Southwest::Checkin.new(
       names: flight.reservation.passengers.map {|p|
