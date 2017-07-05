@@ -13,24 +13,27 @@ Rails.application.configure do
   config.consider_all_requests_local       = true
   config.action_controller.perform_caching = false
 
-  config.action_mailer.default_url_options = {
-    host: 'localhost',
-    port: 3000
-  }
+  # So assets have the full url
+  config.action_mailer.asset_host = ENV['ASSET_HOST']
 
+  # Don't care if the mailer can't send.
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.default_url_options = {
+    host: ENV['MAILER_DEFAULT_HOST'],
+    protocol: ENV['MAILER_DEFAULT_PROTOCOL'] || 'http'
+  }
   config.action_mailer.default_options  = {
     from: ENV['MAILER_DEFAULT_FROM_EMAIL'],
     reply_to: ENV['MAILER_DEFAULT_REPLY_TO']
   }
-
-  config.action_mailer.delivery_method = :letter_opener
-  config.action_mailer.preview_path = "#{Rails.root}/spec/mailers/previews"
-
-  # So assets have the full url
-  config.action_mailer.asset_host = 'http://localhost:3000'
-
-  # Don't care if the mailer can't send.
-  config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    address:              ENV['MAILER_ADDRESS'],
+    user_name:            ENV['MAILER_USERNAME'],
+    password:             ENV['MAILER_PASSWORD'],
+    port:                 2525,
+    authentication:       'plain',
+    enable_starttls_auto: true }
 
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
