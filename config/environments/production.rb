@@ -51,8 +51,6 @@ Rails.application.configure do
   # Prepend all log lines with the following tags.
   # config.log_tags = [ :subdomain, :uuid ]
 
-  config.logger = Logger.new(STDOUT)
-
   # Use a different logger for distributed setups.
   # config.logger = ActiveSupport::TaggedLogging.new(SyslogLogger.new)
 
@@ -86,16 +84,13 @@ Rails.application.configure do
 
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-    address:              ENV['MAILGUN_SMTP_SERVER'],
+    address:              ENV['MAILER_ADDRESS'],
     domain:               ENV['MAILER_DOMAIN'],
-    user_name:            ENV['MAILGUN_SMTP_LOGIN'],
-    password:             ENV['MAILGUN_SMTP_PASSWORD'],
-    port:                 ENV['MAILGUN_SMTP_PORT'],
-    authentication:       :plain,
+    user_name:            ENV['MAILER_USERNAME'] || ENV['SENDGRID_USERNAME'],
+    password:             ENV['MAILER_PASSWORD'] || ENV['SENDGRID_PASSWORD'],
+    port:                 587,
+    authentication:       'plain',
     enable_starttls_auto: true }
-#config.action_mailer.delivery_method = :mailgun
-#config.action_mailer.mailgun_settings = {domain: 'mg.pw10n.pw'}
-
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
   # the I18n.default_locale when a translation cannot be found).

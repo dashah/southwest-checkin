@@ -6,8 +6,8 @@
     "checkin",
     "rails"
   ],
-  "website": "https://github.com/aortbals/southwest-checkin",
-  "repository": "https://github.com/aortbals/southwest-checkin",
+  "website": "https://github.com/dashah/southwest-checkin",
+  "repository": "https://github.com/dashah/southwest-checkin",
   "success_url": "/",
   "scripts": {
     "postdeploy": "bundle exec rake db:migrate db:seed"
@@ -40,6 +40,6 @@
   "addons": [
     "rediscloud:30",
     "heroku-postgresql",
-    "mailgun:starter"
+    "sendgrid:starter"
   ]
 }
