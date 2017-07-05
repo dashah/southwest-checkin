@@ -35,6 +35,6 @@ var dropdown = (function() {
   }
 })();
 
-$(document).on("turbolinks:load", function() {
+$(document).on("ready page:load", function() {
   dropdown.attachEvents();
 });
