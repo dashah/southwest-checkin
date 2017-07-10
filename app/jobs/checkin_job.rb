@@ -5,7 +5,7 @@ class CheckinJob < ActiveJob::Base
   include ActiveJob::Retry.new(strategy: :constant,
                                limit: 10,
                                delay: 2.seconds,
-                               retryable_exceptions: [Southwest::FailedCheckin])
+                               retryable_exceptions: [FailedCheckin])
 
   def perform(flight)
     checkin = Southwest::Checkin.new(
