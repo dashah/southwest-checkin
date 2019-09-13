@@ -20,7 +20,7 @@ module Southwest
     end
 
     def base_uri
-      'https://api-extensions.southwest.com/v1/mobile'
+      'https://mobile.southwest.com/api/extensions/v1/mobile' #https://github.com/xur17/southwest-alerts/blob/master/southwestalerts/southwest.py
     end
 
     def user_agent
@@ -28,7 +28,7 @@ module Southwest
     end
 
     def api_key
-      "l7xx8d8bfce4ee874269bedc02832674129b"
+      "l7xx0a43088fe6254712b10787646d1b298e"  #retrive from https://mobile.southwest.com/js/config.js
     end
   end
 end
